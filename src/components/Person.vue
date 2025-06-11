@@ -14,24 +14,38 @@
 <script lang="ts">
         export default {
         name:'Person',
-        data(){
+        //setup函数
+        setup(){
+            //vue3开始弱化this的使用， this的值是undefined
+            //使用setup函数来定义组件的状态和方法
+            // 这样定义的数据都不是响应式数据
+            let name = "张三"
+            let age= 18
+            let gender = "男"
+            let tel= 123548966
+
+            //方法
+            function changeName() {
+                name  = "李四"
+                console.log("修改名字为：", name);
+            }
+            function changeAge() {
+                age += 1
+                console.log("修改年龄为：", age);
+            }
+            function showTel() {
+                alert("电话号码是：" + tel);
+            }
+            //返回
             return {
-                name: '张三',
-                age: 18,
-                gender: '男',
-                tel: '1234567890'
+                name,
+                age,
+                gender,
+                changeName,
+                changeAge,
+                showTel
             }
-        },
-        methods: {
-            changeName(){
-                this.name = "李四"
-            },
-            changeAge(){
-                this.age += 1
-            },
-            showTel() {
-                alert(`电话号码是：${this.tel}`)
-            }
+
         }
     }   
 </script>
