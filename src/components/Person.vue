@@ -1,15 +1,13 @@
 <template>
     <div class="person">
         <h2>一辆{{car.brand}},价值{{car.price}}，时间是{{car.year}}</h2>
+        <button @click="changeBrand">修改类型</button>
         <button @click="changePrice">修改价格</button>
-
+        <button @click="changeCar">修改汽车</button>
         <br>
 
-        <ul>
-            <li v-for=" g in games" :key="g.name">{{ g.name }},{{ g.type }}</li>
-        </ul>
-        <button @click = 'changeGamesName'>修改第一个游戏名字</button>
-       
+        <h2>{{ sum }}</h2>
+        <button @click="calculateSum">计算总和</button>
    </div>
 </template>
 
@@ -23,25 +21,28 @@
 <script setup lang="ts" name="Person">
 import { ref,reactive } from 'vue';
 //数据
-let car = ref({brand:'奔驰',price: 100000,year:'2002'})
-let games = ref(
-    [
-        {name: '王者荣耀', type: 'MOBA'},
-        {name: '和平精英', type: '射击'},
-        {name: '原神', type: '冒险'}
-
-    ]
-)
-
-console.log(car);
+let car = reactive({brand:'奔驰',price: 100000,year:'2002'})
+let sum = ref(0);
 
 //方法
+function changeBrand(){
+    car.brand = '宝马';
+}
 function changePrice(){
-    car.value.price += 10000;
+    car.price += 10000;
 }
-function changeGamesName(){
-    games.value[0].name = '三国杀'
+function changeCar(){
+    //使用reaction定义的响应式对象，重新分配对象时，会失去响应式
+    //可以使用 Object.assign() 方法来保持响应式
+    //将第二个...参数的属性分配到第一个参数中
+    Object.assign(car, {brand: '保时捷', price: 1500000, year: '2020'});
+    //或者使用ref定义对象
+    //写法为 car.value = {brand: '保时捷', price: 1500000, year: '2020'};
 }
+function calculateSum() {
+    sum.value += 1; 
+}
+
 
 </script>
 
