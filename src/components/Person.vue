@@ -4,6 +4,8 @@
         <p>姓名：{{ name }}</p>
         <p>年龄：{{ age }}</p>
         <p>性别：{{ gender }}</p>
+        <button @click = "changeName">修改名字</button>
+        <button @click = "changeAge">修改名字</button>
         <button @click = "showTel">展示电话号码</button>
     </div>
 </template>
@@ -19,8 +21,19 @@
                 gender: '男',
                 tel: '1234567890'
             }
+        },
+        methods: {
+            changeName(){
+                this.name = "李四"
+            },
+            changeAge(){
+                this.age += 1
+            },
+            showTel() {
+                alert(`电话号码是：${this.tel}`)
+            }
         }
-    }
+    }   
 </script>
 
 <style>
@@ -32,6 +45,7 @@
     }
     
     .person h1 {
+        margin: 0 0 20px;
         color: blue;
     }
     
@@ -41,6 +55,7 @@
     
     .person button {
         margin-top: 10px;
+        margin-left: 20px;
         padding: 5px 10px;
         background-color: #4CAF50;
         color: white;
