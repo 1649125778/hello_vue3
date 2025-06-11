@@ -1,6 +1,5 @@
 <template>
     <div class="person">
-        <h1>你好啊</h1>
         <p>姓名：{{ name }}</p>
         <p>年龄：{{ age }}</p>
         <p>性别：{{ gender }}</p>
@@ -10,13 +9,18 @@
     </div>
 </template>
 
-
+<!-- 配置组件名 -->
 <script lang="ts">
         export default {
         name:'Person',
-        //setup函数
-        setup(){
-            //vue3开始弱化this的使用， this的值是undefined
+    }   
+</script>
+<!-- 配置组合式api -->
+<script setup lang="ts">
+    // 在 Vue 3 中，setup 函数是一个新的组件选项，用于定义组件的状态和方法。
+    // 在 setup 函数中，我们可以使用 Composition API 来创建响应式数据和方法。
+    // 这里我们使用 TypeScript 来定义类型。
+      //vue3开始弱化this的使用， this的值是undefined
             //使用setup函数来定义组件的状态和方法
             // 这样定义的数据都不是响应式数据
             let name = "张三"
@@ -36,22 +40,8 @@
             function showTel() {
                 alert("电话号码是：" + tel);
             }
-            //返回
-            // setup函数返回的对象中的属性和方法会被暴露到模板中
-            // 也就是可以在模板中使用这些属性和方法
-            //返回值也可以是函数 
-            // return （）=> "渲染函数"   简写
-            return {
-                name,
-                age,
-                gender,
-                changeName,
-                changeAge,
-                showTel
-            }
 
-        }
-    }   
+
 </script>
 
 <style>
