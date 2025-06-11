@@ -1,12 +1,18 @@
 <template>
     <div class="person">
-        <p>姓名：{{ name }}</p>
-        <p>年龄：{{ age }}</p>
-        <p>性别：{{ gender }}</p>
-        <button @click = "changeName">修改名字</button>
-        <button @click = "changeAge">修改名字</button>
-        <button @click = "showTel">展示电话号码</button>
-    </div>
+        <h2>一辆{{car.brand}},价值{{car.price}}，时间是{{car.year}}</h2>
+        <button @click="changePrice">修改价格</button>
+
+        <br>
+
+        <ul>
+            <li v-for=" g in games" :key="g.name">{{ g.name }},{{ g.type }}</li>
+        </ul>
+        <button @click = 'changeGamesName'>修改第一个游戏名字</button>
+        <br>
+        <h2>嵌套对象的值：{{ a.a.b.c }}</h2>
+        <button @click="changeANestedValue">修改嵌套对象的值</button>
+   </div>
 </template>
 
 <!-- 配置组件名
@@ -17,34 +23,36 @@
 </script> -->
 <!-- 配置组合式api -->
 <script setup lang="ts" name="Person">
+import { reactive } from 'vue';
+//数据
+let car = reactive({brand:'奔驰',price: 100000,year:'2002'})
+let games = reactive(
+    [
+        {name: '王者荣耀', type: 'MOBA'},
+        {name: '和平精英', type: '射击'},
+        {name: '原神', type: '冒险'}
 
-    import { ref } from 'vue';
+    ]
+)
+let a = reactive({
+    a:{
+        b: {
+            c: 1
+        }
+    }
+})
+console.log(car);
 
-    // 在 Vue 3 中，setup 函数是一个新的组件选项，用于定义组件的状态和方法。
-    // 在 setup 函数中，我们可以使用 Composition API 来创建响应式数据和方法。
-    // 这里我们使用 TypeScript 来定义类型。
-      //vue3开始弱化this的使用， this的值是undefined
-            //使用setup函数来定义组件的状态和方法
-            // 这样定义的数据都不是响应式数据
-            let name = ref("张三")
-            let age= ref(18)
-            let gender = "男"
-            let tel= 123548966
-
-            //方法
-            function changeName() {
-                name.value = "李四"
-                console.log("修改名字为：", name.value);
-            }
-            function changeAge() {
-                age.value += 1
-                console.log("修改年龄为：", age.value);
-            }
-            function showTel() {
-                alert("电话号码是：" + tel);
-            }
-
-
+//方法
+function changePrice(){
+    car.price += 10000;
+}
+function changeGamesName(){
+    games[0].name = '三国杀'
+}
+function changeANestedValue() {
+    a.a.b.c += 1;
+}
 </script>
 
 <style>
@@ -55,7 +63,7 @@
         padding: 20px;
     }
     
-    .person h1 {
+    .person h2 {
         margin: 0 0 20px;
         color: blue;
     }
@@ -77,5 +85,9 @@
     
     .person button:hover {
         background-color: #45a049;
+    }
+    li {
+        list-style: none;
+        margin: 5px 0;
     }
 </style>
