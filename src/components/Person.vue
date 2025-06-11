@@ -9,14 +9,14 @@
     </div>
 </template>
 
-<!-- 配置组件名 -->
+<!-- 配置组件名
 <script lang="ts">
         export default {
         name:'Person',
     }   
-</script>
+</script> -->
 <!-- 配置组合式api -->
-<script setup lang="ts">
+<script setup lang="ts" name="Person">
     // 在 Vue 3 中，setup 函数是一个新的组件选项，用于定义组件的状态和方法。
     // 在 setup 函数中，我们可以使用 Composition API 来创建响应式数据和方法。
     // 这里我们使用 TypeScript 来定义类型。
