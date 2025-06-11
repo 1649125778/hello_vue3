@@ -33,9 +33,12 @@ function changePrice(){
 }
 function changeCar(){
     //使用reaction定义的响应式对象，重新分配对象时，会失去响应式
+    //car = {brand: '保时捷', price: 1500000, year: '2020'};  无效写法
+    //car = reactive({brand: '保时捷', price: 1500000, year: '2020'}); //无效写法
     //可以使用 Object.assign() 方法来保持响应式
     //将第二个...参数的属性分配到第一个参数中
     Object.assign(car, {brand: '保时捷', price: 1500000, year: '2020'});
+
     //或者使用ref定义对象
     //写法为 car.value = {brand: '保时捷', price: 1500000, year: '2020'};
 }
