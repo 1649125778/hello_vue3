@@ -9,9 +9,7 @@
             <li v-for=" g in games" :key="g.name">{{ g.name }},{{ g.type }}</li>
         </ul>
         <button @click = 'changeGamesName'>修改第一个游戏名字</button>
-        <br>
-        <h2>嵌套对象的值：{{ a.a.b.c }}</h2>
-        <button @click="changeANestedValue">修改嵌套对象的值</button>
+       
    </div>
 </template>
 
@@ -23,10 +21,10 @@
 </script> -->
 <!-- 配置组合式api -->
 <script setup lang="ts" name="Person">
-import { reactive } from 'vue';
+import { ref,reactive } from 'vue';
 //数据
-let car = reactive({brand:'奔驰',price: 100000,year:'2002'})
-let games = reactive(
+let car = ref({brand:'奔驰',price: 100000,year:'2002'})
+let games = ref(
     [
         {name: '王者荣耀', type: 'MOBA'},
         {name: '和平精英', type: '射击'},
@@ -34,25 +32,17 @@ let games = reactive(
 
     ]
 )
-let a = reactive({
-    a:{
-        b: {
-            c: 1
-        }
-    }
-})
+
 console.log(car);
 
 //方法
 function changePrice(){
-    car.price += 10000;
+    car.value.price += 10000;
 }
 function changeGamesName(){
-    games[0].name = '三国杀'
+    games.value[0].name = '三国杀'
 }
-function changeANestedValue() {
-    a.a.b.c += 1;
-}
+
 </script>
 
 <style>
