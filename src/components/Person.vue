@@ -17,25 +17,28 @@
 </script> -->
 <!-- 配置组合式api -->
 <script setup lang="ts" name="Person">
+
+    import { ref } from 'vue';
+
     // 在 Vue 3 中，setup 函数是一个新的组件选项，用于定义组件的状态和方法。
     // 在 setup 函数中，我们可以使用 Composition API 来创建响应式数据和方法。
     // 这里我们使用 TypeScript 来定义类型。
       //vue3开始弱化this的使用， this的值是undefined
             //使用setup函数来定义组件的状态和方法
             // 这样定义的数据都不是响应式数据
-            let name = "张三"
-            let age= 18
+            let name = ref("张三")
+            let age= ref(18)
             let gender = "男"
             let tel= 123548966
 
             //方法
             function changeName() {
-                name  = "李四"
-                console.log("修改名字为：", name);
+                name.value = "李四"
+                console.log("修改名字为：", name.value);
             }
             function changeAge() {
-                age += 1
-                console.log("修改年龄为：", age);
+                age.value += 1
+                console.log("修改年龄为：", age.value);
             }
             function showTel() {
                 alert("电话号码是：" + tel);
