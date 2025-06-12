@@ -39,10 +39,10 @@
         person.car.c1 = '车1'
     }
     function changeC2(){
-        person.car.c2 = '车1'
+        person.car.c2 = '车2'
     }
      function changeC3(){
-        person.car.c3 = '车1'
+        person.car.c3 = '车3'
     }
     function changeCar(){
         person.car = {c1:'1',c2:'2',c3:'3'}
@@ -64,8 +64,8 @@
     //     }
     // )
     // 情况四：监视响应式对象中的某个属性，且该属性为基本类型，可以写成函数式,更推荐写函数
-    //监视的要是对象中的属性，最好写函数式
-    //如果是对象监视的是地址值，需要关注的是对象内部，需要手动开启深度监视
+    //监视的要是对象中的基本类型属性，最好写函数式
+    //如果是对象监视的是地址值，并且需要关注的是对象内部，需要手动开启深度监视
     watch(
         ()=>person.car,
         (newValue,oldValue)=>{
@@ -73,6 +73,12 @@
         },
         {deep:true}
     )
+
+
+    // //监视 情况五:监视上述多个数据
+    // watch([()=>person.name,()=>person.car],(newValue,oldValue)=>{
+    //     console.log('person改变',newValue,oldValue)
+    // },{deep:true})
 </script>
 
 <style>
