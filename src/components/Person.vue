@@ -63,10 +63,15 @@
     //         console.log('person改变',newValue,oldValue)
     //     }
     // )
+    // 情况四：监视响应式对象中的某个属性，且该属性为基本类型，可以写成函数式,更推荐写函数
+    //监视的要是对象中的属性，最好写函数式
+    //如果是对象监视的是地址值，需要关注的是对象内部，需要手动开启深度监视
     watch(
-        person.car,(newValue,oldValue)=>{
+        ()=>person.car,
+        (newValue,oldValue)=>{
             console.log('person改变',newValue,oldValue)
-        }
+        },
+        {deep:true}
     )
 </script>
 
