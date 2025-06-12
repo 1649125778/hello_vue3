@@ -1,36 +1,73 @@
 <template>
     <div class="person">
-        <h1>情况三：监视【reactive】定义的【对象类型】数据</h1>
-        <h2>姓名：{{ person.name }}</h2>
+        <h1>姓名：{{ person.name }}</h1>
         <h2>年龄：{{ person.age }}</h2>
+        <h2 v-for="(value,key) in person.car">汽车：{{ value }}</h2>
+
+        <br>
         <button @click="changeName">修改名字</button>
         <button @click="changeAge">修改年龄</button>
-        <button @click="changePerson">修改全部</button>
+        <button @click="changeC1">修改第一台车</button>
+        <button @click="changeC2">修改第二台车</button>
+        <button @click="changeC3">修改第三台车</button>
+        <button @click="changeCar">修改全部车辆</button>
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
-    import { ref, computed, reactive ,toRefs,watch, watchEffect} from 'vue';
+    import { reactive,watch } from 'vue';
 
     //数据
     let person = reactive({
-        name:'zhangsan',
-        age: 18
+        name:'张三',
+        age:18,
+        car:{
+            c1:'奔驰',
+            c2:'宝马',
+            c3:'劳斯莱斯'
+        }
     })
     //方法
     function changeName(){
         person.name += '~'
+
     }
     function changeAge(){
         person.age += 1
     }
-    function changePerson(){
-        Object.assign(person,{name:'李四',age:45})  
+    function changeC1(){
+        person.car.c1 = '车1'
     }
-    //监视 情况三 监视[reaction] 定义的【对象类型】 数据直接使用即可，自动开启深度监测
-    watch(person,(newValue,oldValue)=>{
-        console.log('person变化',newValue,oldValue)
-    },{immediate:true})
+    function changeC2(){
+        person.car.c2 = '车1'
+    }
+     function changeC3(){
+        person.car.c3 = '车1'
+    }
+    function changeCar(){
+        person.car = {c1:'1',c2:'2',c3:'3'}
+    }
+
+    //监视 情况四：监视响应式对象中的某个属性，且该属性为基本类型，要写成函数式
+    // watch(
+    //     // ()=>{return person.name} 下面为简写
+    //     ()=> person.name,
+    //     (newValue,oldValue)=>{
+    //         console.log('person改变',newValue,oldValue)
+    //     }
+    // )
+    // watch(
+    //     // ()=>{return person.age} 下面为简写
+    //     ()=> person.age,
+    //     (newValue,oldValue)=>{
+    //         console.log('person改变',newValue,oldValue)
+    //     }
+    // )
+    watch(
+        person.car,(newValue,oldValue)=>{
+            console.log('person改变',newValue,oldValue)
+        }
+    )
 </script>
 
 <style>
