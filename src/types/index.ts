@@ -4,6 +4,7 @@ export interface PersonInter {
     name: string;
     age: number;
     tel: number;
+    x?: number;
  }
 
  //一个自定义类型、

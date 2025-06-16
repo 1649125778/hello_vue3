@@ -1,36 +1,21 @@
 
 <template>
     <div class="person">
+        <ul>
+            <li v-for="item in x.list" :key="item.name">
+                {{ item.name }}--{{ item.age }} -- {{ item.tel }}
+            </li>
+        </ul>
        
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
-import { type PersonInter, type Persons } from '@/types'
-    // 引入 PersonInter 接口
-    let person: PersonInter = {
-        name: '张三',
-        age: 18,
-        tel: 15525
-    }
 
-    let persons: Persons = [
-        {
-            name: '张三',
-            age: 18,
-            tel: 15525
-        },
-        {
-            name: '李四',
-            age: 20,
-            tel: 15526
-        },
-        {
-            name: '王五',
-            age: 22,
-            tel: 15527
-        }
-    ]
+import { defineProps } from 'vue';
+
+let x = defineProps(['list'])
+console.log("接受的list",x.list)
 
 
 </script>
