@@ -1,40 +1,34 @@
 
 <template>
     <div class="person">
-        <h2>需求：当水温达到60度，或水位达到80cm时，给服务器发请求</h2>
-        <h2>当前水位：{{ temp }}℃</h2>
-        <h2>当前水位：{{ height }}cm</h2>
-        <button @click="addTemp">水位+10</button>
-        <button @click="addHeight">水温+10</button>
+        <h1>测试1</h1>
+        <h2 ref="title2">测试2</h2>
+        <h3>测试3</h3>
+        <button @click="showTag">点击输出h2标签</button>
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
     import { ref,reactive,watch, watchEffect } from 'vue';
-    //数据
-    let temp = ref(0)
-    let height = ref(0)
+    
+    //创建一个title2，用于存储ref标记的内容
+    let title2 = ref()
+
     //方法
-    function addTemp(){
-        temp.value += 10
+    function showTag(){
+        console.log(title2.value)
+
     }
-    function addHeight(){
-        height.value += 10
-    }
-    //监视 watchEffect 立即运行一个函数 ，同时响应式的追踪其依赖，并在依赖时重新执行该函数  不需要指出监视那些数据
-    watchEffect(()=>{
-        if(temp.value >= 60 || height.value >= 80){
-            console.log('向服务器发送请求')
-        }
-    })
 
 
 </script>
 
-<style>
+<!-- scoped 局部样式 只能选择当前页面的 .person -->
+<style scoped>
     .person{
         border: 1px solid #ccc;
         padding: 10px;
+        background:bisque;
         margin: 10px;
     }
 

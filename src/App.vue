@@ -1,19 +1,23 @@
 <template>
+    <h2 ref="title2">你好</h2>
+     <button @click="showTag">点击输出h2标签</button>
     <Person/>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup name = "App">
     import Person from './components/Person.vue'
-    export default {
-        name:'App',
-        components: {
-            Person
-        },
+    import  {ref} from 'vue'
+
+    let title2 = ref()
+
+    function showTag(){
+        console.log(title2.value)
     }
+
 
 </script>
 
-<style>
+<style scoped>
     .app{
         background-color: aquamarine;
         box-sizing: 10px;
