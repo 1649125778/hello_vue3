@@ -1,31 +1,36 @@
 
 <template>
     <div class="person">
-        <h1>测试1</h1>
-        <h2 ref="title2">测试2</h2>
-        <h3>测试3</h3>
-        <button @click="showTag">点击输出h2标签</button>
+       
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
-    import { ref,defineExpose} from 'vue';
-    
-    //创建一个title2，用于存储ref标记的内容
-    let title2 = ref()
-    
-    let a = ref(0)
-    let b = ref(1)
-    let c = ref(2)
-
-    //方法
-    function showTag(){
-        console.log(title2.value)
-
+import { type PersonInter, type Persons } from '@/types'
+    // 引入 PersonInter 接口
+    let person: PersonInter = {
+        name: '张三',
+        age: 18,
+        tel: 15525
     }
 
-    //返回ref组件实例
-    defineExpose({a,b,c})
+    let persons: Persons = [
+        {
+            name: '张三',
+            age: 18,
+            tel: 15525
+        },
+        {
+            name: '李四',
+            age: 20,
+            tel: 15526
+        },
+        {
+            name: '王五',
+            age: 22,
+            tel: 15527
+        }
+    ]
 
 
 </script>
