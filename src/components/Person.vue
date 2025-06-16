@@ -93,8 +93,8 @@
 
 
     // //监视 情况五:监视上述多个数据   如果使用person.car 而不是()=>person.car 比较的是地址值，所以不触发 但是使用函数式则会创建一个新的地址 ，所有会被监测到
-    watch([()=>person.name,person.car],(newValue,oldValue)=>{
-        console.log('person改变',newValue===oldValue)
+    watch([()=>person.name,()=>person.car],(newValue,oldValue)=>{
+        console.log('person改变',newValue===oldValue,newValue,oldValue)
     },{deep:true,immediate:true})
 </script>
 
