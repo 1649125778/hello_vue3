@@ -2,7 +2,7 @@
 <template>
     <div class="person">
         <ul>
-            <li v-for="item in x.list" :key="item.name">
+            <li v-for="item in list" :key="item.name">
                 {{ item.name }}--{{ item.age }} -- {{ item.tel }}
             </li>
         </ul>
@@ -11,11 +11,21 @@
 </template>
 
 <script setup lang="ts" name="Person">
+import { withDefaults } from 'vue';
+import { type Persons} from '@/types'
 
-import { defineProps } from 'vue';
+// 只接受list属性
+// defineprops(['a','b'])
+// let x = defineProps(['list'])
 
-let x = defineProps(['list'])
-console.log("接受的list",x.list)
+// defineProps<{list?: Persons}>()
+
+//接受list + 限制类型 + 限制必要性 + 指定默认值
+withDefaults(defineProps<{list?: Persons}>(), {
+    list: () => [{name: '默认名字', age: 0, tel: 0}] as Persons
+})
+
+// console.log("接受的list",x.list)
 
 
 </script>
