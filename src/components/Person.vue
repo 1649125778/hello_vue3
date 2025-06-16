@@ -9,16 +9,23 @@
 </template>
 
 <script setup lang="ts" name="Person">
-    import { ref,reactive,watch, watchEffect } from 'vue';
+    import { ref,defineExpose} from 'vue';
     
     //创建一个title2，用于存储ref标记的内容
     let title2 = ref()
+    
+    let a = ref(0)
+    let b = ref(1)
+    let c = ref(2)
 
     //方法
     function showTag(){
         console.log(title2.value)
 
     }
+
+    //返回ref组件实例
+    defineExpose({a,b,c})
 
 
 </script>

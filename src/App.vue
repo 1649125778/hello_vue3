@@ -1,7 +1,8 @@
 <template>
     <h2 ref="title2">你好</h2>
      <button @click="showTag">点击输出h2标签</button>
-    <Person/>
+    <!-- 测试ref属性添加在组件上 -->
+    <Person ref = "ceshiren"/>
 </template>
 
 <script lang="ts" setup name = "App">
@@ -9,9 +10,12 @@
     import  {ref} from 'vue'
 
     let title2 = ref()
+    let ren = ref()
 
     function showTag(){
-        console.log(title2.value)
+        console.log("title2",title2.value)
+        // 输出person的组件实例
+        console.log("Person",ren.value)
     }
 
 
