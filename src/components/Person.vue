@@ -1,32 +1,21 @@
 
 <template>
     <div class="person">
-        <ul>
-            <li v-for="item in list" :key="item.name">
-                {{ item.name }}--{{ item.age }} -- {{ item.tel }}
-            </li>
-        </ul>
-       
+        <h2>当前求和为：{{ sum }}, 当前求和 * 100 为：{{ doubleSum }}</h2>
+        <button @click="add">添加</button>
+        <hr>
+        <img v-for="(item, index) in dogList" :key="index" :src="item" alt="">
+        <br>
+        <button @click="addImg">添加图片</button>
     </div>
 </template>
 
 <script setup lang="ts" name="Person">
-import { withDefaults } from 'vue';
-import { type Persons} from '@/types'
+import useSum from '@/hooks/useSum';
+import useImg from '@/hooks/useImg';
 
-// 只接受list属性
-// defineprops(['a','b'])
-// let x = defineProps(['list'])
-
-// defineProps<{list?: Persons}>()
-
-//接受list + 限制类型 + 限制必要性 + 指定默认值
-withDefaults(defineProps<{list?: Persons}>(), {
-    list: () => [{name: '默认名字', age: 0, tel: 0}] as Persons
-})
-
-// console.log("接受的list",x.list)
-
+const { sum, add, doubleSum } = useSum();
+const { dogList, addImg } = useImg();
 
 </script>
 
@@ -37,6 +26,10 @@ withDefaults(defineProps<{list?: Persons}>(), {
         padding: 10px;
         background:bisque;
         margin: 10px;
+    }
+    img{
+        width: 100px;
+        margin-right: 10px;
     }
 
 
