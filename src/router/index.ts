@@ -33,7 +33,8 @@ const router = createRouter({
                 // 添加问号可以实现参数可选择传输
                 name:'detail',
                 path:'detail/:id/:title/:content?',
-                component:Detail
+                component:Detail,
+                props: true
             }
         ]
     }
