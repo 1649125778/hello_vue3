@@ -1,13 +1,29 @@
 <template>
     <div class="news">
-        <img src="../assets/news.jpg" alt="">
-        <h2>Latest News</h2>
+        <h2>新闻</h2>
+        <ul>
+            <li v-for="item in newsItems" :key="item.id">
+                <RouterLink to="/news/detail">
+                    {{ item.title }}
+                </RouterLink>
+            </li>
+        </ul>
     </div>
+    <!-- 展示区 -->
+     <div class="news-content">
+        <RouterView></RouterView>
+     </div>
 
 </template>
 
 <script lang="ts" setup name="News">
-
+import { reactive, ref } from 'vue';
+import { RouterView, RouterLink } from 'vue-router';
+const newsItems = reactive([
+    { id: 1, title: '新闻标题 1' ,content:'新闻内容 1'},
+    { id: 2, title: '新闻标题 2' ,content:'新闻内容 2'},
+    { id: 3, title: '新闻标题 3' ,content:'新闻内容 3'},
+]);
 </script>
 
 <style scoped>
@@ -25,5 +41,22 @@
         max-width: 800px;
         margin: 0 auto;
         text-align: center;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    .news-content {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+    }
+    .news-content h2 {
+        color: darkblue;
     }
 </style>
