@@ -39,6 +39,7 @@ const router = createRouter({
                 //函数写法
                 props(router){
                     console.log("aaaa",router)
+                    //可以是query 也可以是params
                     return router.query
                 }
             }
