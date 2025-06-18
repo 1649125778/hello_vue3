@@ -34,6 +34,7 @@ const router = createRouter({
                 name:'detail',
                 path:'detail/:id/:title/:content?',
                 component:Detail,
+                // 将路由接收到的所有params参数作为props传给路由组件
                 props: true
             }
         ]
