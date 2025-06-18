@@ -30,7 +30,9 @@ const router = createRouter({
         children:[
             {
                 // 子集路由不需要加卸斜杠
-                path:'detail',
+                // 添加问号可以实现参数可选择传输
+                name:'detail',
+                path:'detail/:id/:title/:content?',
                 component:Detail
             }
         ]

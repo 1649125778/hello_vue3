@@ -3,16 +3,22 @@
         <h2>新闻</h2>
         <ul>
             <li v-for="item in newsItems" :key="item.id">
-                <!-- <RouterLink :to="`/news/detail?id=${item.id}&title=${item.title}&content=${item.content}`">
+                <!-- parms第一种写法 -->
+                 <!-- <RouterLink :to="`/news/detail/${item.id}/${item.title}/${item.content}`">
                     {{ item.title }}
-                </RouterLink> -->
-                <RouterLink :to="{path:'/news/detail',
-                    query: {
+                </RouterLink>  -->
+               
+                <!-- parms第二种写法 -->
+                 <RouterLink :to="{
+                    name: 'detail',
+                    params:{
                         id: item.id,
                         title: item.title,
-                        content: item.content
+                        content: item.content   
                     }
-                }">{{ item.title }}</RouterLink>
+                 }">
+                 {{ item.title }}
+                 </RouterLink>
             </li>
         </ul>
     </div>
