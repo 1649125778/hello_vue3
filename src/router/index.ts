@@ -13,14 +13,17 @@ const router = createRouter({
     //路由器的工作模式
     history: createWebHistory(), // 使用 HTML5 的 history 模式
     routes: [{
+        name:'zhuye',
         path:'/home',
         component: Home
     },
     {
+        name:'guanyu',
         path:'/about',
         component: About
     },
     {
+        name:'xinwen',
         path:'/news',
         component: News
     }
