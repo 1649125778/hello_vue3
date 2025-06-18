@@ -11,7 +11,7 @@
                 <!-- parms第二种写法 -->
                  <RouterLink :to="{
                     name: 'detail',
-                    params:{
+                    query:{
                         id: item.id,
                         title: item.title,
                         content: item.content   
