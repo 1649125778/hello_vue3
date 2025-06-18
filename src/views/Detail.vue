@@ -1,18 +1,17 @@
 <template>
     <div class="detail">
-        <h2>关于我们</h2>
-        <p>这是一个关于我们的页面。</p>
+        <h2>{{ route.query.id }}</h2>
+        <h2>{{ route.query.title }}</h2>
+        <h2>{{ route.query.content }}</h2>
         <img src="../assets/about.jpg" alt="关于我们图片">
     </div>
 </template>
 
 <script lang="ts" setup name="Detail">
-import { defineProps } from 'vue';
+import { useRoute } from 'vue-router';
 
-const props = defineProps<{
-    title: string;
-    content: string;
-}>();
+const route = useRoute();
+console.log("路由参数:", route.query);
 </script>
 
 <style scoped>

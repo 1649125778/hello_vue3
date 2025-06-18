@@ -3,7 +3,7 @@
         <h2>新闻</h2>
         <ul>
             <li v-for="item in newsItems" :key="item.id">
-                <RouterLink to="/news/detail">
+                <RouterLink :to="`/news/detail?id=${item.id}&title=${item.title}&content=${item.content}`">
                     {{ item.title }}
                 </RouterLink>
             </li>
@@ -43,12 +43,17 @@ const newsItems = reactive([
         text-align: center;
     }
     ul {
-        list-style-type: none;
+        /* list-style-type: none; */
         padding: 0;
     }
     li {
         padding: 10px;
         border-bottom: 1px solid #ccc;
+       
+    }
+    li::marker{
+        color: #bf2a2a;
+        font-weight: bold;
     }
     .news-content {
         margin-top: 20px;
