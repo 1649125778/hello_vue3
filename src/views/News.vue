@@ -3,9 +3,16 @@
         <h2>新闻</h2>
         <ul>
             <li v-for="item in newsItems" :key="item.id">
-                <RouterLink :to="`/news/detail?id=${item.id}&title=${item.title}&content=${item.content}`">
+                <!-- <RouterLink :to="`/news/detail?id=${item.id}&title=${item.title}&content=${item.content}`">
                     {{ item.title }}
-                </RouterLink>
+                </RouterLink> -->
+                <RouterLink :to="{path:'/news/detail',
+                    query: {
+                        id: item.id,
+                        title: item.title,
+                        content: item.content
+                    }
+                }">{{ item.title }}</RouterLink>
             </li>
         </ul>
     </div>

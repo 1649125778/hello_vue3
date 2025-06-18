@@ -9,8 +9,9 @@
 
 <script lang="ts" setup name="Detail">
 import { useRoute } from 'vue-router';
-
+import { toRefs } from 'vue';
 const route = useRoute();
+let {query} = toRefs(route);
 console.log("路由参数:", route.query);
 </script>
 
