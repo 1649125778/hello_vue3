@@ -9,7 +9,7 @@
                 </RouterLink>  -->
                
                 <!-- parms第二种写法 -->
-                 <RouterLink :to="{
+                 <RouterLink  replace :to="{
                     name: 'detail',
                     query:{
                         id: item.id,
@@ -21,11 +21,12 @@
                  </RouterLink>
             </li>
         </ul>
-    </div>
-    <!-- 展示区 -->
+          <!-- 展示区 -->
      <div class="news-content">
         <RouterView></RouterView>
      </div>
+    </div>
+  
 
 </template>
 

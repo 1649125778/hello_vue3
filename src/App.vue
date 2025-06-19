@@ -3,8 +3,11 @@
         <h2>Vue 路由测试</h2>
         <!-- 导航区 -->
         <div class="navigate">
-            <RouterLink :to="{path:'/home'}" active-class="active">首页</RouterLink>
-            <RouterLink :to="{name:'xinwen'}">新闻</RouterLink>
+            <!-- 路由的repla属性  
+             浏览记录 默认push 可前进，可返回  
+             替换为replace会默认覆盖前一个浏览记录 无法返回前进-->
+            <RouterLink replace :to="{path:'/home'}" active-class="active">首页</RouterLink>
+            <RouterLink replace :to="{name:'xinwen'}">新闻</RouterLink>
             <RouterLink :to="{path:'/about'}">关于</RouterLink>
         </div>
         <!-- 展示区 -->
