@@ -25,8 +25,16 @@ import {defineStore} from 'pinia'
         state(){
             return {
                 sum: 6,
-                school:"牛逼炸了",
+                school:"xuexiao",
                 address:"位置信息"
+            }
+        },
+        getters:{
+            bigSum(state):number{
+                return state.sum * 10
+            },
+            upperSchool(state):string{
+                return this.school.toUpperCase();
             }
         }
     }

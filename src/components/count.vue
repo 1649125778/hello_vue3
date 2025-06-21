@@ -1,7 +1,7 @@
 <template>
     <div class="count">
         <h2>计数器</h2>
-        <h2>{{ school }} ---- {{ address }}</h2>
+        <h2>{{ school }}---学校大写：{{ upperSchool }} ---- {{ address }}</h2>
         <p>当前计数: {{ sum }} -- 最大值为10 </p>
         <select v-model.number="number">
             <option value="1">1</option>
@@ -23,7 +23,7 @@ import { useCountStore } from '@/store/Count'
 //使用useCountStore，得到一个专门保存store的变量
 const countStore = useCountStore()
 //storeToRefs只会关注store中的数据，不会对方法进行ref包裹
-let {sum,school,address} = storeToRefs(countStore)
+let {sum,school,address,bigSum,upperSchool} = storeToRefs(countStore)
 let number = ref(1)
 
 // 定义增加函数
@@ -52,6 +52,7 @@ function decrement(){
     console.log(`减少了 ${number.value}，当前计数: ${countStore.sum}`);
     // 这里可以添加其他逻辑，比如发送请求等
 }
+
 
 
 </script>
