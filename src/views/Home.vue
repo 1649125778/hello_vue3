@@ -7,6 +7,16 @@
 </template>
 
 <script lang="ts" setup  name="Home">
+// 五秒后跳转到新闻页面
+import { onMounted } from 'vue';
+import {useRouter} from 'vue-router';
+
+const router = useRouter();
+onMounted(()=>{
+    setTimeout(()=>{
+        router.push({name:'xinwen'})
+    },3000)
+})
 
 </script>
 

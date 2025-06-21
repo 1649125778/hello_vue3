@@ -3,6 +3,7 @@
         <h2>新闻</h2>
         <ul>
             <li v-for="item in newsItems" :key="item.id">
+                <button @click="viewDetail(item)">点击查看详细新闻</button>
                 <!-- parms第一种写法 -->
                  <!-- <RouterLink :to="`/news/detail/${item.id}/${item.title}/${item.content}`">
                     {{ item.title }}
@@ -32,12 +33,36 @@
 
 <script lang="ts" setup name="News">
 import { reactive, ref } from 'vue';
-import { RouterView, RouterLink } from 'vue-router';
+import { RouterView, RouterLink, useRouter } from 'vue-router';
+
+interface newsItems{
+    id: number;
+    title:string;
+    content:string;
+}
+
+const router = useRouter();
+
 const newsItems = reactive([
     { id: 1, title: '新闻标题 1' ,content:'新闻内容 1'},
     { id: 2, title: '新闻标题 2' ,content:'新闻内容 2'},
     { id: 3, title: '新闻标题 3' ,content:'新闻内容 3'},
 ]);
+
+
+function viewDetail(item:newsItems){
+    //使用路由跳转到详情页
+    router.replace({
+            name:"detail",
+            query:{
+                id: item.id,
+                title: item.title,
+                content: item.content
+            }
+        }
+        )
+
+}
 </script>
 
 <style scoped>
