@@ -1,63 +1,77 @@
 <template>
-    <div class = "app">
-        <h2>Vue 路由测试</h2>
-        <!-- 导航区 -->
-        <div class="navigate">
-            <!-- 路由的repla属性  
-             浏览记录 默认push 可前进，可返回  
-             替换为replace会默认覆盖前一个浏览记录 无法返回前进-->
-            <RouterLink replace :to="{path:'/home'}" active-class="active">首页</RouterLink>
-            <RouterLink replace :to="{name:'xinwen'}">新闻</RouterLink>
-            <RouterLink :to="{path:'/about'}">关于</RouterLink>
-        </div>
-        <!-- 展示区 -->
-        <div class="main-content">
-            <RouterView></RouterView>
-        </div>
+    <div class="about">
+        <Count />
+        <hr>
+        <LovePrattle />
     </div>
-   
 </template>
 
-<script lang="ts" setup name = "App">
-import { RouterView } from 'vue-router';
+<script setup lang="ts" name="App">
+import Count from '@/components/count.vue';
+import LovePrattle from '@/components/lovePrattle.vue';
 
 </script>
 
-<style scoped>
-    .app{
-        background-color: aquamarine;
-        box-sizing: 10px;
-        border-radius: 10px;
-        padding: 20px;
-    }
-    .navigate{
-        display: flex;
-        justify-content: space-around;
-        margin-bottom: 20px;
-    }
-    .navigate a{
-        text-decoration: none;
-        color: black;
-        font-size: 20px;
-    }
-    .navigate a:hover{
-        color: red;
-    }
-    .main-content{
-        background-color: bisque;
-        padding: 20px;
-        border-radius: 10px;
-    }
-    .main-content h2{
-        color: darkblue;
-    }
-    .main-content img{
-        max-width: 100%;
-        height: auto;
-    }
-    .active {
-        color: red;
-        font-weight: bold;
-    }
+<style>
+.about {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+.about img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}  
+.about h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+.about p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+.about hr {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+.about .love-prattle {
+    margin-top: 2em;
+}
 
+.about .love-prattle h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+.about .love-prattle p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+.about .count {
+    margin-top: 2em;
+}
+.about .count h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+.about .count p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+.about .count select {
+    font-size: 1em;
+    padding: 0.5em;
+    margin: 0.5em 0;
+}
+.about .count button {
+    font-size: 1em;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
 </style>
