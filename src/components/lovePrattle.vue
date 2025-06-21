@@ -5,7 +5,7 @@
         <button @click="addLovePrattle">添加絮叨</button>
         <p>
             <ul>
-                <li v-for="item in prattle" :key="item.id" class="prattle-item">
+                <li v-for="item in pattleStore.prattles" :key="item.id" class="prattle-item">
                     {{ item.content }}
                 </li>
             </ul>
@@ -20,15 +20,10 @@ import { ref } from 'vue';
 //默认暴露 不需要加{} 
 import axios from 'axios';
 import { nanoid } from 'nanoid';
+import { useLovePattleStore } from '@/store/LovePattle';
 
-// 使用 ref 创建响应式变量
-let prattle = ref([
-    { id: '1', content: "在这个组件中，我们可以自由地表达对生活的热爱。" },
-    { id: '2', content: "每一次更新都是对生活的重新诠释。" },
-    { id: '3', content: "爱的絮叨是我们对生活的热情表达。" },
-    { id: '4', content: "生活中的每一个小细节都值得我们去珍惜。" },
-    { id: '5', content: "爱的絮叨让我们感受到生活的美好。" }
-]);
+
+const pattleStore = useLovePattleStore()
 
 // 定义添加爱的絮叨函数
 async function addLovePrattle() {
@@ -36,7 +31,7 @@ async function addLovePrattle() {
     await axios.get('https://api.uomg.com/api/rand.qinghua?format=json')
         .then(response => {
             // 假设返回的数据是一个数组
-            prattle.value.unshift({id:nanoid(),content: response.data.content});
+            pattleStore.prattles.unshift({id:nanoid(),content: response.data.content});
         })
         .catch(error => {
             console.error("获取爱的絮叨失败:", error);
