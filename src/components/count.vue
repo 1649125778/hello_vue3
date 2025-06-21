@@ -1,7 +1,8 @@
 <template>
     <div class="count">
         <h2>计数器</h2>
-        <p>当前计数: {{ countstore.sum }}</p>
+        <h2>{{ countStore.school }} ---- {{ countStore.address }}</h2>
+        <p>当前计数: {{ countStore.sum }} -- 最大值为10 </p>
         <select v-model.number="number">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -16,22 +17,36 @@
 
 <script lang="ts" setup name="Count">
 import { ref } from 'vue';
+//引入useCountStore
 import { useCountStore } from '@/store/Count'
-
-const countstore = useCountStore()
+//使用useCountStore，得到一个专门保存store的变量
+const countStore = useCountStore()
 let number = ref(1)
 
 // 定义增加函数
 function increment(){
-    countstore.sum += number.value
-    console.log(`增加了 ${number.value}，当前计数: ${countstore.sum}`);
+    //第一种修改方式
+    // countstore.sum += number.value
+    // console.log(`增加了 ${number.value}，当前计数: ${countstore.sum}`);
     // 这里可以添加其他逻辑，比如发送请求等 
+
+    //第二种修改方式
+    // countstore.$patch({
+    //     sum: countstore.sum + number.value,
+    //     school: '新学校',
+    //     address: '新地址'
+    // })
+
+    //第三种修改方式
+    countStore.increment(number.value)
+    console.log(`增加了 ${number.value}，当前计数: ${countStore.sum}`);
+
 }
 
 // 定义减少函数
 function decrement(){
-    countstore.sum  -= number.value
-    console.log(`减少了 ${number.value}，当前计数: ${countstore.sum}`);
+    countStore.sum  -= number.value
+    console.log(`减少了 ${number.value}，当前计数: ${countStore.sum}`);
     // 这里可以添加其他逻辑，比如发送请求等
 }
 
