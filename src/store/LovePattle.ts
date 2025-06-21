@@ -1,8 +1,22 @@
 import {defineStore} from 'pinia'
-
+import axios from 'axios'
+import {nanoid} from 'nanoid'
  export const useLovePattleStore = defineStore(
     'loveTake',
     {
+        actions:{
+            async getTalk(){
+                 // 模拟从服务器获取新的爱的絮叨
+                await axios.get('https://api.uomg.com/api/rand.qinghua?format=json')
+                    .then(response => {
+                        // 假设返回的数据是一个数组
+                        this.prattles.unshift({id:nanoid(),content: response.data.content});
+                    })
+                    .catch(error => {
+                        console.error("获取爱的絮叨失败:", error);
+                    });
+                 }
+        },
         //真正存储数据的地方
         state(){
             return {

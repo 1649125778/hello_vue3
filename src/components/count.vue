@@ -1,8 +1,8 @@
 <template>
     <div class="count">
         <h2>计数器</h2>
-        <h2>{{ countStore.school }} ---- {{ countStore.address }}</h2>
-        <p>当前计数: {{ countStore.sum }} -- 最大值为10 </p>
+        <h2>{{ school }} ---- {{ address }}</h2>
+        <p>当前计数: {{ sum }} -- 最大值为10 </p>
         <select v-model.number="number">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -17,10 +17,13 @@
 
 <script lang="ts" setup name="Count">
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 //引入useCountStore
 import { useCountStore } from '@/store/Count'
 //使用useCountStore，得到一个专门保存store的变量
 const countStore = useCountStore()
+//storeToRefs只会关注store中的数据，不会对方法进行ref包裹
+let {sum,school,address} = storeToRefs(countStore)
 let number = ref(1)
 
 // 定义增加函数

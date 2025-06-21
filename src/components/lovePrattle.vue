@@ -5,7 +5,7 @@
         <button @click="addLovePrattle">添加絮叨</button>
         <p>
             <ul>
-                <li v-for="item in pattleStore.prattles" :key="item.id" class="prattle-item">
+                <li v-for="item in prattles" :key="item.id" class="prattle-item">
                     {{ item.content }}
                 </li>
             </ul>
@@ -21,21 +21,14 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { useLovePattleStore } from '@/store/LovePattle';
-
+import { storeToRefs} from 'pinia'
 
 const pattleStore = useLovePattleStore()
-
+let {prattles} = storeToRefs(pattleStore)
 // 定义添加爱的絮叨函数
 async function addLovePrattle() {
-    // 模拟从服务器获取新的爱的絮叨
-    await axios.get('https://api.uomg.com/api/rand.qinghua?format=json')
-        .then(response => {
-            // 假设返回的数据是一个数组
-            pattleStore.prattles.unshift({id:nanoid(),content: response.data.content});
-        })
-        .catch(error => {
-            console.error("获取爱的絮叨失败:", error);
-        });
+    pattleStore.getTalk();
+   
 }
 
 </script>
