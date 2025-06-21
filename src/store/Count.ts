@@ -33,7 +33,7 @@ import {defineStore} from 'pinia'
             bigSum(state):number{
                 return state.sum * 10
             },
-            upperSchool(state):string{
+            upperSchool():string{
                 return this.school.toUpperCase();
             }
         }

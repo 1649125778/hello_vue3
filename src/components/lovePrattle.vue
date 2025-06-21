@@ -23,11 +23,18 @@ import { nanoid } from 'nanoid';
 import { useLovePattleStore } from '@/store/LovePattle';
 import { storeToRefs} from 'pinia'
 
-const pattleStore = useLovePattleStore()
-let {prattles} = storeToRefs(pattleStore)
+const prattleStore = useLovePattleStore()
+let {prattles} = storeToRefs(prattleStore)
+
+// 使用subscribe函数订阅store状态变化
+prattleStore.$subscribe((mutate,state)=>{
+    console.log("parttleStore中的数据发生变化",mutate,state)
+    localStorage.setItem("prattles",JSON.stringify(state.prattles))
+})
+
 // 定义添加爱的絮叨函数
 async function addLovePrattle() {
-    pattleStore.getTalk();
+    prattleStore.getTalk();
    
 }
 

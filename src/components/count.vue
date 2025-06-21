@@ -26,6 +26,7 @@ const countStore = useCountStore()
 let {sum,school,address,bigSum,upperSchool} = storeToRefs(countStore)
 let number = ref(1)
 
+
 // 定义增加函数
 function increment(){
     //第一种修改方式
